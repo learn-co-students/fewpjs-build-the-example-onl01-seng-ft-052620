@@ -28,13 +28,13 @@ function likeALike (event){
   let heart = event.target
   console.log(heart.innerText)
   mimicServerCall()
-  .then(function serverCall(){
+  .then(function (){
     heart.innerText = selectHeart(heart.innerText);
     if (heart.innerText == FULL_HEART)
     {heart.className = "activated-heart"}
     else { heart.className = "like-glyph"}
   })
-  .catch(function error(){
+  .catch(function (){
   alert("Its all gone pete tong")
   errorBar.className = "";
   })
