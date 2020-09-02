@@ -4,6 +4,43 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+function addListenerToHearts(likeHearts) {
+  for (let glyph of likeHearts) {
+    glyph.innerHTML = EMPTY_HEART
+    glyph.addEventListener("click", () => {
+      if (glyph.innerHTML == EMPTY_HEART) {
+      mimicServerCall()
+        .then(function(response) {
+          console.log(response)
+          if (response == "Pretend remote server notified of action!") {
+            glyph.innerHTML = FULL_HEART
+            glyph.className = 'activated-heart'
+          } else {
+              debugger 
+              alert("Bad things!")
+              const errorModal = document.getElementById('modal')
+              const errorMessage = document.getElementById('modal-message')
+              errorModal.classList.remove('hidden')
+              errorMessage.innerText = error.message
+          }
+        })
+      } else {
+        glyph.innerHTML = EMPTY_HEART
+        glyph.classList.remove('activated-heart')
+      }
+    })
+    }
+}
+
+const errorModal = document.getElementById('modal')
+errorModal.className = 'hidden'
+
+document.addEventListener("DOMContentLoaded", () => {
+
+const likeHearts = document.getElementsByClassName('like-glyph')
+addListenerToHearts(likeHearts)
+
+})
 
 
 
