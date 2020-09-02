@@ -2,9 +2,40 @@
 const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
+
+function heartStates (heart){
+  if (heart == EMPTY_HEART){
+    return FULL_HEART
+  }
+  else {return EMPTY_HEART}
+}
+
 // Your JavaScript code goes here!
+let errorBar = document.getElementById("modal")
+let likeHearts = document.getElementsByClassName("like");
 
+errorBar.className = "hidden";
 
+for (let heart of likeHearts) {
+  heart.addEventListener("click", likeAction)
+}
+
+function likeAction(e) {
+  let heart = e.target
+  console.log(heart.innerText)
+  mimicServerCall()
+  .then(function(){
+    heart.innerText = heartStates(heart.innerText);
+      if (heart.innerText = FULL_HEART)
+      {heart.className = "activated-heart"}
+      else { heart.className = "like-glyph"}
+
+})
+.catch(function() {
+  alert("Puffy Errors!!!")
+  errorBar.className = "";
+})
+}
 
 
 //------------------------------------------------------------------------------
