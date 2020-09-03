@@ -3,6 +3,16 @@ const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
+mimicServerCall()
+.then(resp => resp.json())
+.catch(error => {
+const modal = document.getElementsById("modal")
+modal.className = ""
+document.getElementsById("modal-message").innerText = error
+setTimeout( function(){ 
+  modal.className = "hidden"
+}, 5000)
+})
 
 
 
