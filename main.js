@@ -6,6 +6,36 @@ const FULL_HEART = '♥'
 
 
 
+let mydiv = document.querySelectorAll(".like")
+
+function myCallBack(e) {
+mimicServerCall()
+  .then(resp => { 
+    const likeEvent = e.target
+    if(likeEvent.innerHTML === FULL_HEART) {
+likeEvent.innerHTML = EMPTY_HEART
+    }
+    else{
+    likeEvent.className = ".activated-heart"
+    likeEvent.innerHTML = FULL_HEART
+    likeEvent.style.color = 'red'
+    }
+  })
+
+  .catch(error => {
+    const modal = document.getElementById("modal")
+    modal.className = ""
+    document.getElementsById("modal-message").innerText = error
+    setTimeout( function(){ 
+      modal.className = "hidden"
+    }, 5000)
+    })   
+}
+
+for(let x of mydiv) {
+ x.addEventListener('click', myCallBack)
+
+}
 
 //------------------------------------------------------------------------------
 // Ignore after this point. Used only for demo purposes
